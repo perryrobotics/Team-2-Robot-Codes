@@ -9,14 +9,13 @@ void burning_left()
     arm_down();
     claw_open();
     arm_up();
-    // NOW GET FIRETRUCK
+    // Onward for the fire truck! //
+    
     backward(1100, 6000);
     right(900,200);
     backward(900,560);
     forward(1000, 1700);
-
     left(1200, 700);   
-
     drive_to_black(0, THRESH);
 
     backward(1100, 1500);
@@ -24,8 +23,8 @@ void burning_left()
     forward(900, 1000);
     claw_close();
     arm_up();
+    // firetruck scored!, get fireman #1 //
     
-    //firetruck scored, get fireman #1
     backward(900, 200);
     right(900, 200);
     drive_to_black(0, THRESH);
@@ -35,15 +34,16 @@ void burning_left()
     arm_up();
     backward(900, 900);
     right(900,200);
-    backward_time(1400, 3500);//BACK OF PIPE
+    backward_time(1400, 3500);
+    //back into pipe
     forward(1000, 2400);
     left(1000, 850);
     drive_to_black(0, THRESH);
     backward(800, 200);
     arm_down();
-
     forward(900, 700);
-    claw_close();// GOT FIRST FIREMAN!!  GO SCORE IT!!!
+    claw_close();
+    // grabbed first fireman!
     backward(1000, 500);
     arm_up();
     right(900, 800);
@@ -51,7 +51,8 @@ void burning_left()
     drive_to_black(0, THRESH);   
     left(900, 800);
     forward(900, 2200);
-    claw_open();  // FIRST FIREMAN SCORED!!
+    claw_open();  
+    //  first fireman scored! //
 
 
     ///////////////////////////////////////////////////////
