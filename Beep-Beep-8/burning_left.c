@@ -10,7 +10,7 @@ void burning_left()
     arm_down();
     claw_open();
     arm_up();
-    // Stage 1 - Ambulance is complete! //
+    printf("Stage 1 - Ambulance is complete!")
     // Onward for the fire truck! //
     
     //             STAGE 2, FIRE TRUCK              //
@@ -37,7 +37,9 @@ void burning_left()
     arm_down();
     claw_open();
     arm_up();
-    // fire truck scored!, off for fireman #1 //
+    // fire truck scored! //
+    printf("Stage 2 - Fire Truck is complete!")
+    // onward for fireman #1! //
     
     //             STAGE 3, FIRST FIREMAN              //
     backward(900, 900);
@@ -61,6 +63,8 @@ void burning_left()
     left(900, 800);
     forward(900, 2200);
     claw_open();  //  first fireman scored! //
+    printf("Stage 3 - First Fireman is complete!")
+    // onward for fireman #2! //
     
     //              STAGE 4, SECOND FIREMAN              //
     backward(900, 1000);
@@ -76,7 +80,8 @@ void burning_left()
     right(900, 500); 
     claw_open(); // score second fireman!! //
     arm_up();
-    // Stage 4 - Second Fireman is complete! //
+    printf ("Stage 4 - Second Fireman is complete!")
+    // onward for fireman #3! //
     
     //              STAGE 5, THIRD FIREMAN              //
     backward_time(900, 2000); 
@@ -93,7 +98,8 @@ void burning_left()
     right(900, 500); 
     claw_open(); // score third fireman!!! //
     arm_up();
-    // Stage 5 - Third Fireman is complete! //
+    printf ("Stage 5 - Third Fireman is complete!")
+    // onward for fireman #4! //
     
     //              STAGE 6, FOURTH FIREMAN              //
     backward_time(900, 2500);
@@ -110,7 +116,8 @@ void burning_left()
     claw_open(); // score fourth fireman!!!! //
     arm_up();
     claw_close();
-    // Stage 6 - Fourth Fireman is complete! //
+    printf ("Stage 6 - Fourth Fireman is complete!")
+    // onward for fireman #5! //
     
     //              STAGE 7, FIFTH FIREMAN              //
     left(900,750);
@@ -118,16 +125,16 @@ void burning_left()
     forward(900,200);
     right(900,580); // score fifth fireman!!!!! //
     arm_up(); 
-    // Stage 7 - Fifth Fireman is complete! //
-    
-    //              STAGE 8, FINAL ALIGNMENT              //
+    printf ("Stage 7 - Fifth Fireman is complete!")
+    // onward for final realignment //    
+    //              STAGE 8, FINAL REALIGNMENT              //
     right(900, 600);
     forward(900,100);
     arm_down();
     left(300, 300);
-    // Stage 8 - Final Alignment is complete! //
+    printf("Stage 8 - Final Realignment is complete!") 
     
-    //       BEEP BEEP 8 BURNING_LEFT.C IS COMPLETE       //
+    printf("BEEP BEEP 8 BURNING_LEFT.C IS COMPLETE")     
     
 
 }   
