@@ -1,151 +1,130 @@
 #!/usr/bin/python
 import os, sys
 from wallaby import *
-from motion import *
+from movement import *
 from effectors import *
+from wait_for_start import *
 
-def main():
-	enable_servos()
-	print "Hello Jani Doot Doot Doot!"
-	create_connect()
-  	arm_back()
-	open_claw()
-   	msleep(2000)
+LIGHT_SENSOR = 1
+    
+def main():  
+  	create_connect()
+
+  	#print "Connected to create!!"
+
+  	#msleep(5000)
+ 	#wait_for_light(LIGHT_SENSOR)
         
-	#go get first supplies
-  	arm_down(50)
-  	spin_CW(50, 3)
-  	drive_backwards(100, 243)
-  	spin_CCW(50, 7)
-  	close_claw()
-	arm_s(50)
- 	spin_CCW(50, 160)
-  	arm_down(50)
-  	msleep(750)
-  	open_claw()  #scoreddddddddddd
-    
-    
-    #go get second supplies
- 	spin_CW(20, 5)
+ 	if wait_for_start(LIGHT_SENSOR) == False:
+		print("BAD CALIBRATION!!!")
+		return False
+        
+ 	shut_down_in(120)
+  	enable_servos()
+ 	arm_back(50)
+   	claw_open(50)
+  	CCW(50, 35)
+
+   	#Get first supply stack!
+   	arm_down(50)
+   	forward(100, 135)
+   	claw_close(50)
    	arm_up(50)
-  	spin_CW(50, 210)
- 	arm_down(50)
-   	spin_CW(50, 10)
-  	drive_backwards(50, 115)
-   	spin_CCW(50, 17)
-   	close_claw()
-   	spin_CW(50, 170)
-  	open_claw()  #yEEEET
-    
-	#go get third supplies
-   	spin_CW(20, 3)
+ 	forward(100,100) #get out of the way of the wallaby
+   	backward(100,190)
+   	CW(100,90)
+   	backward(100, 100)
+   	arm_down(50)
+   	claw_open(50)
+   	#Got first supply stack, onto getting the second!
    	arm_up(50)
-   	spin_CW(50, 115)
+   	CCW(225,109)
+  	arm_down(50)
+	forward(100,175)
+  	claw_close(50)
+  	arm_up(50)
+  	backward(100,140)
+   	CW(225,140)
    	arm_down(25)
-	drive_backwards(50, 140)
-   	close_claw()
- 	spin_CCW(50, 90) 
-	msleep(750)
-  	open_claw() #Just do it
+  	backward(100,120)
+   	claw_open(50)
+  	#Got second supply stack, now onto the last supply stack!
+  	arm_up(50)
+   	forward(200,55)
+   	CCW(200, 42)
+  	forward(100, 190)
+  	arm_down(50)
+   	CCW(50, 10)
+	forward(50, 20)
+  	claw_close(50)
+	backward(50, 20)
+   	arm_up(50)
+  	CW(300, 50)
+   	backward(200, 175)
+   	arm_down(50)
+   	arm_down(50)
+  	claw_open(50)
+	arm_up(50)
+	backward(100, 100)
+	CW(50, 85)
+	forward(100, 400)# HIT THE PIPE!!!
+        
+  	#GO GET BLUE POMS!!
+  	backward_to_black(300, 0, 2700)
+  	CCW(100, 90)
+  	drive_to_bump(100)
+   	msleep(1000)
+ 	forward(100, 300)
+  	CCW(100, 90)
+  	arm_down(50)
+  	forward(100, 40)
+  	claw_close(50)
+   	backward(100, 50)
+  	arm_up(50)
+ 	CW(100, 268)#turn to water reclamation unit
+  	arm_score(25)
+  	#turn_CCW_to_black(100,0, THRESH)
+   	#drive_to_bump(100) 
+  	#CW(100, 45)
+ 	claw_open(50)  #FIRST POMS SCORED!!!
+   	# GO GET SECOND POM PILE!!!
+        
+ 	backward(100, 350)
+  	CW(100, 90)
+  	backward(100, 100)
+  	CW(100, 40)# Align the second poms
+   	backward(100, 20)
+   	arm_down(50)
+   	forward(100, 65)
+   	claw_close(50)
+   	backward(100, 50)
+   	arm_score(50)
+	CCW(100,125)
+   	forward(100, 365)#go forward to water reclamation unit
+	claw_open(50)#Just scored pile two
+  	arm_up(50)
 
-    #WUTTTEEER!!! (Take 1) 
-	spin_CW(20, 5)
-  	arm_up(25)
-	spin_CCW(50, 140) 
-  	arm_back()
-	drive_backwards (200, 1110)
-	drive_straight(100, 390)
-   	spin_CCW(60, 105)
-  	arm_down(25)
-	drive_backwards(50, 295)
-   	close_claw()
-	arm_s(20)
-	spin_CW(50, 72)
-	drive_backwards(55, 60)
-	open_claw()
-	drive_straight(50, 100) 
-  	msleep(750) #we did it, we did it, we did it, YAH!!!
-   
-	#Wuter take 2 ACTION!!!
- 	arm_back()
-  	spin_CCW(50, 90)
-   	arm_down(45)
-  	drive_backwards(50, 120)
-   	close_claw()
-   	
- 	
-	
-	
-   	
     
+    #go score pile three 
+ 	backward(100,900)
+	CW(100,115)
+  	backward(100,90)
+  	arm_down(50)
+  	forward(100,75)
+  	claw_close(50)
+  	backward(100,75)
+  	arm_score(50)
+  	CCW(100,115)
+  	forward(100,890)
+   	CW(100,10)
+ 	claw_open(50)
+  	CW(100,5)
+  	arm_down(50)
+   	CCW(100,35)
+   	
         
         
-	"""
-  	msleep(750)
-    drive_till_bump(200)
-	#drive_backwards(200, 18)
-	drive_backwards(200,40)
-	spin_CCW(200, 90)
-	drive_backwards(75,100)
-	drive_till_bump(200)
-	drive_backwards(200, 98)
-	spin_CCW(200,90) 
-	#drive_straight(50, 20)
-	drive_straight(50, 180)
-	arm_power()
-	#PL 1
-	spin_CCW(50, 52)
-    #PL 2
-	spin_CW(50, 30)
-	arm_back()
-	spin_CW(50,62)
-	spin_CCW(100, 140)
-	drive_till_bump(200)
-	drive_backwards(200, 420)
-	spin_CW(50,92)
-	drive_backwards(80,300)
-	drive_straight(50,20)
-	spin_CCW(50,25)
-	drive_straight(50,100)
-	arm_power()
-	spin_CW(50,70)   
-    drive_straight(50, 210)
-	spin_CCW(50, 70) 
-	arm_power()
-	spin_CW(50,57)
-	spin_CCW(100, 55)
-	drive_straight(100, 90)
-	arm_power()
-	spin_CW(75, 175)
-	
-	#realign
-	spin_CCW(75, 60)
-	drive_till_bump(150)
-	arm_back()         
-	drive_backwards(150, 50) 
-	spin_CW(150, 150) 
-	drive_backwards(60, 100)
-	
-	#1st pompom     
- 	drive_straight(200, 400)
-	spin_CW(100, 210) 
-	open_claw()
-	arm_down() 
-	drive_backwards(100, 205) 
-	close_claw() 
-	arm_up() 
-	spin_CW(100, 45) 
-	drive_backwards(100, 250) 
-	open_claw()
-	#rly quick note since I'm not here, we're planning on having it back into the water tank on the metal bar side diagonally then in goes straight a certain distance and drops the poms. GL :) -Josie 
-	"""
-	
-    
-   
-    
 
-
-   	create_disconnect()
   	disable_servos()
 
 if __name__== "__main__":
