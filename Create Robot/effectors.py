@@ -5,7 +5,7 @@ from wallaby import *
 ARM = 3
 ARM_SU = 450
 ARM_UP = 650
-ARM_DOWN = 100
+ARM_DOWN = 65
 ARM_BACK = 2000
 ARM_PL = 900
     
