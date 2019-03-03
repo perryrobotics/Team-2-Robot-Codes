@@ -6,7 +6,7 @@ def drive_straight(speed, dist_to_go):
 	set_create_distance(0)
   	create_drive_direct(speed, speed)
   	while get_create_distance() < dist_to_go:
-		print get_create_distance(), ":", dist_to_go
+		#print get_create_distance(), ":", dist_to_go
 		pass
  	create_drive_direct(0,0)
  
@@ -43,4 +43,29 @@ def back_till_bump(speed):
 		pass
  	create_drive_direct(0,0)
             
-      
+def drive_until_black(port,speed, thresh):
+	create_drive_direct(speed, speed)
+	while analog(port) < thresh:
+		pass
+	create_drive_direct(0,0)
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
