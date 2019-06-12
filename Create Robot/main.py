@@ -1,132 +1,91 @@
 #!/usr/bin/python
 import os, sys
 from wallaby import *
-from movement import *
+from motion import *
 from effectors import *
 from wait_for_start import *
 
-LIGHT_SENSOR = 1
-    
-def main():  
-  	create_connect()
+def main():
 
-  	#print "Connected to create!!"
+	print("R2D2 Starting Up!")
 
-  	#msleep(5000)
- 	#wait_for_light(LIGHT_SENSOR)
-        
- 	if wait_for_start(LIGHT_SENSOR) == False:
-		print("BAD CALIBRATION!!!")
-		return False
-        
- 	shut_down_in(120)
-  	enable_servos()
- 	arm_back(50)
-   	claw_open(50)
-  	CCW(50, 35)
+	create_connect()
 
-   	#Get first supply stack!
-   	arm_down(50)
-   	forward(100, 135)
-   	claw_close(50)
-   	arm_up(50)
- 	forward(100,100) #get out of the way of the wallaby
-   	backward(100,190)
-   	CW(100,90)
-   	backward(100, 100)
-   	arm_down(50)
-   	claw_open(50)
-   	#Got first supply stack, onto getting the second!
-   	arm_up(50)
-   	CCW(225,109)
-  	arm_down(50)
-	forward(100,175)
-  	claw_close(50)
-  	arm_up(50)
-  	backward(100,140)
-   	CW(225,140)
-   	arm_down(25)
-  	backward(100,120)
-   	claw_open(50)
-  	#Got second supply stack, now onto the last supply stack!
-  	arm_up(50)
-   	forward(200,55)
-   	CCW(200, 42)
-  	forward(100, 190)
-  	arm_down(50)
-   	CCW(50, 10)
-	forward(50, 20)
-  	claw_close(50)
-	backward(50, 20)
-   	arm_up(50)
-  	CW(300, 50)
-   	backward(200, 175)
-   	arm_down(50)
-   	arm_down(50)
-  	claw_open(50)
+ 	create_full()
+	#wait_for_start(1)
+  	shut_down_in(120)
+ 	enable_servos()
+  	arm_back()
+	open_claw()
+   	#msleep(2000)
+
+	drive_backwards(100, 50)
+	spin_CCW(100, 110)
+	drive_till_bump(100) #HIT PIPE NEAR POWER LINES
+	spin_CW(100, 90) #TURN TOWARDS BLACK TAPE
+	drive_backwards_until_black(200)#DRIVE TO BLACK TAPE
+	drive_backwards(200,150)
+	spin_CCW_to_black(50)
+	spin_CCW(50,20)
+	arm_down(50)
+ 	follow_line(150,1250) #GO DOWN LINE COLLECTING ITEMS IN CLAW
+   	#SCORE STUFF INT START BOX
+	spin_CCW(100,105)
+	drive_backwards(200,210)
+	arm_back()
+	#SCORED!!  GO GET 1st POM PILE
+	spin_CW(100,195)  #SPIN OUT OF BOX TOWARDS 1ST PILE
+	drive_backwards(100,50)#DRIVE TOWARDS 1ST PILE
+	arm_down(50)
+	drive_backwards(100, 200) #DRIVE TOWARDS POMS
+	close_claw()  #GRAB 1st POMS
+	drive_straight(100,70)#BACK OFF OF PIPES SO WE CAN LIFT POMS
+	arm_back()#LIFT POMS
+	spin_CW_to_black(100)
+ 	follow_line(150,1100)
+
+	spin_CCW(100, 50)#TURN TO POM CONTAINER
+	#drive_backwards(100, 70)
+	arm_up(25)
+	claw_s(30)
+	#POM PILE 1 SCORED!!  GET #2!
+	spin_CCW(100, 75)
+	arm_down(50)
+	close_claw()#pom pile 2 grabbed
+	arm_up(40)
+	spin_CW(100,75)
+	claw_s(30) #pompile 2 scored
+	spin_CCW(100,100)#spin toward pom pile #3
+	arm_down(50)
+	drive_backwards(100, 300) #drive towards pile #3
+	close_claw() #pom pile 3 grabbed
+	drive_straight(100, 300)
 	arm_up(50)
-	backward(100, 100)
-	CW(50, 85)
-	forward(100, 400)# HIT THE PIPE!!!
-        
-  	#GO GET BLUE POMS!!
-  	backward_to_black(300, 0, 2700)
-  	CCW(100, 90)
-  	drive_to_bump(100)
-   	msleep(1000)
- 	forward(100, 300)
-  	CCW(100, 90)
-  	arm_down(50)
-  	forward(100, 40)
-  	claw_close(50)
-   	backward(100, 50)
-  	arm_up(50)
- 	CW(100, 268)#turn to water reclamation unit
-  	arm_score(25)
-  	#turn_CCW_to_black(100,0, THRESH)
-   	#drive_to_bump(100) 
-  	#CW(100, 45)
- 	claw_open(50)  #FIRST POMS SCORED!!!
-   	# GO GET SECOND POM PILE!!!
-        
- 	backward(100, 350)
-  	CW(100, 90)
-  	backward(100, 100)
-  	CW(100, 40)# Align the second poms
-   	backward(100, 20)
-   	arm_down(50)
-   	forward(100, 65)
-   	claw_close(50)
-   	backward(100, 50)
-   	arm_score(50)
-	CCW(100,125)
-   	forward(100, 365)#go forward to water reclamation unit
-	claw_open(50)#Just scored pile two
-  	arm_up(50)
+	spin_CW(100, 105)
+	claw_s(30) #pompile 3 scored
+	spin_CCW(100, 105) #spin toward pom pile #4
+	arm_down(50)
+	drive_backwards(100, 600) #drive towards pile #4
+	close_claw() #pom pile 4 grabbed
+	drive_straight(100, 600)
+	arm_up(50)
+	spin_CW(100, 112.5)
+	claw_s(30) #pompile 4 scored
+	arm_back()
+	spin_CCW(150, 10)
+	arm_down(50)
+	drive_backwards(100, 50)
+	close_claw()
+	spin_CW(500, 180)
 
-    
-    #go score pile three 
- 	backward(100,900)
-	CW(100,115)
-  	backward(100,90)
-  	arm_down(50)
-  	forward(100,75)
-  	claw_close(50)
-  	backward(100,75)
-  	arm_score(50)
-  	CCW(100,115)
-  	forward(100,890)
-   	CW(100,10)
- 	claw_open(50)
-  	CW(100,5)
-  	arm_down(50)
-   	CCW(100,35)
-   	
-        
-        
 
-  	disable_servos()
-
+	
+        
+ 
 if __name__== "__main__":
     sys.stdout = os.fdopen(sys.stdout.fileno(),"w",0)
-    main();
+    main()        
+        
+        
+        
+        

@@ -2,49 +2,58 @@
 import os, sys
 from wallaby import *
 
-
-ARM_PORT = 3
-ARM_D = 270
-ARM_U = 900
-ARM_B= 2010
-ARM_S = 700
-CLAW_PORT = 0
-CLAW_O = 1550
-CLAW_C = 183
+ARM = 3
+ARM_SU = 510
+ARM_UP = 790
+ARM_DOWN = 400 #original was 350
+ARM_BACK = 2000
+ARM_PL = 900
     
-def move_servo_slow(port, current_pos, end_pos,step):
-	if end_pos < current_pos:
+CLAW= 1
+CLAW_OPEN = 300
+CLAW_CLOSED = 1590
+CLAW_SU = 300
+    
+def move_servo_slow(port, start, end, step):
+	if start > end:
 		step = -step
-	for pos in range(current_pos, end_pos, step):
+	for pos in range(start, end, step):
 		set_servo_position(port, pos)
-  		msleep(40)
-	set_servo_position(port,end_pos)
-            
-            
+		msleep(40)
+ 	set_servo_position(port, end)
+    
 def arm_up(step):
-	move_servo_slow(ARM_PORT, get_servo_position(ARM_PORT), ARM_U, step)
+  	start = get_servo_position(ARM)
+   	move_servo_slow( ARM, start, ARM_UP, step)
         
 def arm_down(step):
-	move_servo_slow(ARM_PORT, get_servo_position(ARM_PORT), ARM_D, step)
+  	start = get_servo_position(ARM)
+	move_servo_slow( ARM, start, ARM_DOWN, step)
         
-def arm_back(step):
-	move_servo_slow(ARM_PORT, get_servo_position(ARM_PORT), ARM_B, step)
-  
-def arm_score(step):
-	move_servo_slow(ARM_PORT, get_servo_position(ARM_PORT), ARM_S, step)
+def arm_back():
+	set_servo_position(ARM, ARM_BACK)
+  	msleep(350)
+
+def arm_power():
+	set_servo_position(ARM, ARM_PL)
+  	msleep(350)
+ 
+def close_claw():
+	set_servo_position(CLAW, CLAW_CLOSED)
+ 	msleep(350)
+   
+def open_claw():
+	set_servo_position(CLAW, CLAW_OPEN)
+  	msleep(350)
         
-def claw_open(step):
-	move_servo_slow(CLAW_PORT, get_servo_position(CLAW_PORT), CLAW_O, step)
+def arm_s(step):
+  	start = get_servo_position(ARM)
+   	move_servo_slow( ARM, start, ARM_SU, step)
+      
+def claw_s(step):
+  	start = get_servo_position(CLAW)
+   	move_servo_slow( CLAW, start, CLAW_SU, step)
         
-def claw_close(step):
-	move_servo_slow(CLAW_PORT, get_servo_position(CLAW_PORT), CLAW_C, step)
         
         
-        
-            
-
-
-
-
-
-
+    
